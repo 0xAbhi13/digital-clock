@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Digital Clock — Real-time clock powered by JavaScript. Veda Technology Web Development Internship Task 4." />
+  <title>Digital Clock | Veda Technology Internship Task 4</title>
+  <meta name="theme-color" content="#0f2557" />
+  <!-- Relative paths for GitHub Pages compatibility -->
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="page">
+    <!-- Page heading -->
+    <header class="header">
+      <h1>Digital Clock</h1>
+      <p class="subtitle">Real-time clock powered by JavaScript</p>
+    </header>
+
+    <!-- Clock card -->
+    <main>
+      <section class="clock-card" aria-label="Digital clock">
+        <!-- Status indicator -->
+        <div class="status-row">
+          <span class="status" role="status" aria-live="polite">
+            <span id="statusDot" class="status-dot running" aria-hidden="true"></span>
+            <span id="statusText">Running</span>
+          </span>
+          <span id="formatBadge" class="format-badge">24-Hour</span>
+        </div>
+
+        <!-- Time display -->
+        <div class="time-display" aria-label="Current time">
+          <span class="sr-only">Current time:</span>
+          <time id="clockTime" datetime="">
+            <span id="hours">00</span><span class="colon" aria-hidden="true">:</span><span id="minutes">00</span><span class="colon" aria-hidden="true">:</span><span id="seconds">00</span>
+          </time>
+          <span id="ampm" class="ampm" hidden>AM</span>
+        </div>
+
+        <!-- Date display -->
+        <p id="dateDisplay" class="date-display">Loading date…</p>
+
+        <!-- Controls -->
+        <div class="controls">
+          <!-- Format toggle -->
+          <div class="segmented" role="group" aria-label="Time format">
+            <button type="button" id="format12Btn" aria-pressed="false">12H</button>
+            <button type="button" id="format24Btn" class="active" aria-pressed="true">24H</button>
+          </div>
+
+          <!-- Start / Stop / Reset -->
+          <div class="buttons" role="group" aria-label="Clock controls">
+            <button type="button" id="startStopBtn" class="btn btn-primary">Stop</button>
+            <button type="button" id="resetBtn" class="btn btn-secondary">Reset</button>
+          </div>
+        </div>
+
+        <p class="hint">Time syncs from your device clock every second. No backend required.</p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Veda Technology &mdash; Web Development Internship &middot; Task 4: Digital Clock</p>
+    </footer>
+  </div>
+
+  <!-- Relative path for GitHub Pages compatibility. defer ensures DOM is ready. -->
+  <script src="./script.js" defer></script>
+</body>
+</html>

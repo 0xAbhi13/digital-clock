@@ -1,0 +1,361 @@
+/* ============================================================
+   Digital Clock — Veda Technology Internship Task 4
+   Palette: light background, navy blue, white, orange accents
+   No external frameworks, fonts, or assets.
+   ============================================================ */
+
+/* ---------- Tokens ---------- */
+:root {
+  --bg: #f2f5fb;
+  --card: #ffffff;
+  --navy: #0f2557;
+  --navy-soft: #1e3a8a;
+  --navy-muted: #4a5a86;
+  --orange: #ff7a00;
+  --orange-dark: #d96200;
+  --border: #e2e8f5;
+  --shadow: 0 12px 32px rgba(15, 37, 87, 0.12);
+  --shadow-sm: 0 4px 12px rgba(15, 37, 87, 0.1);
+  --radius: 18px;
+  --green: #16a34a;
+  --red: #dc2626;
+  --focus: #ff7a00;
+}
+
+/* ---------- Reset / base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--navy);
+  /* Subtle light background with navy tint */
+  background-image:
+    radial-gradient(900px 420px at 15% 0%, rgba(30, 58, 138, 0.08), transparent 60%),
+    radial-gradient(700px 380px at 90% 100%, rgba(255, 122, 0, 0.1), transparent 60%);
+  display: flex;
+  justify-content: center;
+  padding: 32px 16px;
+}
+
+.page {
+  width: 100%;
+  max-width: 620px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ---------- Header ---------- */
+.header {
+  text-align: center;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  letter-spacing: 0.5px;
+}
+
+.header h1::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 4px;
+  margin: 10px auto 0;
+  border-radius: 999px;
+  background: var(--orange);
+}
+
+.subtitle {
+  margin: 10px 0 0;
+  color: var(--navy-muted);
+  font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+}
+
+/* ---------- Card ---------- */
+.clock-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: clamp(20px, 4vw, 36px);
+  text-align: center;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.clock-card:hover {
+  box-shadow: 0 16px 40px rgba(15, 37, 87, 0.16);
+}
+
+/* ---------- Status row ---------- */
+.status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--navy-soft);
+  background: #eef3ff;
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 999px;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.18);
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.status-dot.stopped {
+  background: var(--red);
+  box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.15);
+}
+
+.format-badge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--orange-dark);
+  background: #fff3e6;
+  border: 1px solid #ffd9ad;
+  padding: 6px 12px;
+  border-radius: 999px;
+}
+
+/* ---------- Time display ---------- */
+.time-display {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 10px;
+  margin: 6px 0 8px;
+  padding: 18px 10px;
+  background: var(--navy);
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid #0b1c44;
+}
+
+.time-display time {
+  font-family: Consolas, "SF Mono", Menlo, Monaco, "Courier New", monospace;
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(2.6rem, 11vw, 4.6rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.colon {
+  color: var(--orange);
+  animation: blink 1s steps(1) infinite;
+}
+
+/* Gentle colon blink only; paused users still get readable time */
+@keyframes blink {
+  50% { opacity: 0.35; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .colon { animation: none; }
+  * { transition: none !important; }
+}
+
+.ampm {
+  font-size: clamp(0.95rem, 3vw, 1.25rem);
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #0f2557;
+  background: var(--orange);
+  border-radius: 8px;
+  padding: 4px 10px;
+  min-width: 58px;
+}
+
+.ampm[hidden] {
+  display: none;
+}
+
+/* ---------- Date ---------- */
+.date-display {
+  margin: 12px 0 20px;
+  font-size: clamp(1rem, 3vw, 1.15rem);
+  font-weight: 600;
+  color: var(--navy-soft);
+}
+
+/* ---------- Controls ---------- */
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+
+/* Segmented 12H / 24H toggle */
+.segmented {
+  display: inline-flex;
+  background: #eef3ff;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 4px;
+  gap: 4px;
+}
+
+.segmented button {
+  border: 0;
+  background: transparent;
+  color: var(--navy-soft);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  padding: 8px 22px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.segmented button.active {
+  background: var(--navy);
+  color: #fff;
+  box-shadow: var(--shadow-sm);
+}
+
+.segmented button:not(.active):hover {
+  background: #dbe6ff;
+}
+
+/* Action buttons */
+.buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn {
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 11px 28px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  min-width: 120px;
+  transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--orange);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(255, 122, 0, 0.35);
+}
+
+.btn-primary:hover {
+  background: var(--orange-dark);
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+}
+
+.btn-secondary {
+  background: #fff;
+  color: var(--navy);
+  border-color: var(--navy);
+}
+
+.btn-secondary:hover {
+  background: var(--navy);
+  color: #fff;
+}
+
+.btn-secondary:active {
+  transform: translateY(1px);
+}
+
+/* Accessible focus states for all buttons */
+button:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Disabled state (used if extended later) */
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.hint {
+  margin: 18px 0 0;
+  font-size: 0.85rem;
+  color: var(--navy-muted);
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--navy-muted);
+}
+
+.footer p {
+  margin: 0;
+}
+
+/* Screen-reader only text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+/* ---------- Responsive ---------- */
+/* Tablet */
+@media (max-width: 600px) {
+  body { padding: 24px 12px; }
+  .time-display { gap: 6px; }
+  .ampm { min-width: 50px; }
+}
+
+/* Small mobile */
+@media (max-width: 380px) {
+  .status-row {
+    flex-direction: column;
+  }
+  .btn {
+    min-width: 100%;
+    width: 100%;
+  }
+  .buttons {
+    width: 100%;
+  }
+  .segmented {
+    width: 100%;
+  }
+  .segmented button {
+    flex: 1;
+  }
+}
