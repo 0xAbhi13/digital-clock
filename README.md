@@ -22,7 +22,6 @@
 
 Digital Clock of **Abhishek Shahaji Jadhav** — Web Developer & first-year BCA student at VIIT, Baramati. Built with **HTML5 + CSS3 + Vanilla JavaScript**: no frameworks, no libraries, no APIs, no build step, no external assets in the app itself.
 
-> **Internship attribution:** 45-day Web Development Internship at **Veda Technology** — Task 4: Digital Clock.
 
 <details>
 <summary><b>📖 Table of Contents (click to expand)</b></summary>
@@ -113,47 +112,6 @@ No install or build step. ✨
 | ![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white) | https://www.linkedin.com/in/0xabhi13/ |
 | ![Portfolio](https://img.shields.io/badge/Portfolio-FF7A00?style=flat-square&logo=globe&logoColor=white) | https://0xabhi13.github.io/MyPortfolio/ |
 
-## 📝 My Approach
-
-1. **Read the brief first:** `HH:MM:SS` via `Date`, `setInterval` updates, `padStart` zeros, date + weekday, 12H/24H + AM/PM, Start/Stop + Reset, instant load, no duplicate timers, responsive, separate files, relative paths.
-2. **Built the structure:** semantic landmarks, single `h1` (“Digital Clock”) + subtitle (“Real-time clock powered by JavaScript”), `<time>` with `HH:MM:SS` spans, date paragraph, segmented format group + Start/Stop + Reset, status + format badge.
-3. **Styled mobile-up:** CSS custom properties for light / navy / orange theme, Flexbox card, navy time panel with orange colons, `clamp()` type, two breakpoints (600px, 380px), hover/focus-visible/active states, `prefers-reduced-motion` support.
-4. **Wrote honest JS:** fresh `new Date()` each tick, `twoDigits()` helper, 12H conversion with midnight/noon fix, `textContent` only, `timerId` guard, `startClock`/`stopClock`/`resetClock`, immediate init then interval.
-5. **Tested honestly:** syntax check, logic unit test, ID cross-check, local serve test (all 200s), responsive + console-error review; fixed failures before submitting.
-
-## ✅ Outcome
-
-A complete, responsive, dependency-free Digital Clock: large live time, date + weekday, 12H/24H with AM/PM, Start/Stop/Reset with live status, instant accurate load, and zero console errors. Ready to push to the public `internship-task-4` repo and deploy on GitHub Pages.
-
-## 🌐 Deployment
-
-**GitHub Pages:**
-
-```powershell
-Set-Location "C:\Users\EDIUS X.30\Documents\Default Project\internship-task-4"
-git init -b main
-git add index.html style.css script.js README.md Veda_Technology_Task_4_Project_Report.docx assets
-git commit -m "Task 4: Digital Clock (HTML + CSS + JS)"
-git remote add origin https://github.com/0xAbhi13/internship-task-4.git
-git push -u origin main
-```
-
-Then GitHub → **Settings → Pages → Deploy from a branch → `main` / root** → `https://0xabhi13.github.io/internship-task-4/`
-
-> Keep `index.html`, `style.css`, and `script.js` in the same directory with relative links so Pages resolves them correctly.
-
-## 🧪 Testing Checklist
-
-- [x] Clock shows the correct local time.
-- [x] Seconds update every second.
-- [x] Date and weekday are correct.
-- [x] Both 12-hour and 24-hour modes work (AM/PM only in 12H).
-- [x] Start, Stop, and Reset controls work as intended.
-- [x] No JavaScript console errors (`node --check` clean, IDs verified).
-- [x] Responsive on mobile and desktop (`clamp()` + media queries).
-- [x] All assets and scripts load correctly (local serve: `index:200 css:200 js:200`).
-- [x] No broken links or incorrect file paths (relative only).
-- [x] Works without a backend or build process.
 
 ## 📜 JavaScript Concepts
 
@@ -176,27 +134,6 @@ Then GitHub → **Settings → Pages → Deploy from a branch → `main` / root*
 | **Stop** | Freezes updates, status → *Stopped*, button becomes *Start* |
 | **Start** | Resumes live updates, status → *Running* (no duplicate timers) |
 | **Reset** | Re-syncs to system time, restores 24-hour format, restarts (ends *Running*) |
-
-## 📸 Screenshots
-
-> Placeholder — add a screenshot after running the app.
-
-```text
-[ Screenshot coming soon — capture the clock in 24H and 12H modes ]
-```
-
-To add one later, save an image as `screenshot.png` in this folder and embed it:
-
-```markdown
-![Digital Clock screenshot](./screenshot.png)
-```
-
-## Accuracy Notes
-
-- Time is read from the viewer's own device clock — no invented timestamps.
-- Skills are presented as *learning/using* at internship level.
-- Internship is described as *ongoing, project-based learning* (started 10 Oct 2026, per Task 3).
-- App uses zero external requests; README badges/animations are docs-only.
 
 ---
 
